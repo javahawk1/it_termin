@@ -1,0 +1,575 @@
+{
+	"info": {
+		"_postman_id": "1f58ca4a-e293-402a-b248-fd15fc844891",
+		"name": "AuthorsSocialMediaAPI",
+		"description": "API for managing authors and their social media accounts",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "47816363",
+		"_collection_link": "https://djakhadeveloper-7666770.postman.co/workspace/f99bb661-a242-4c94-88fa-a9c1c8a9848a/collection/47816363-1f58ca4a-e293-402a-b248-fd15fc844891?action=share&source=collection_link&creator=47816363"
+	},
+	"item": [
+		{
+			"name": "Authentication",
+			"item": [
+				{
+					"name": "Register Author",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author_first_name\": \"John\",\n    \"author_last_name\": \"Doe\",\n    \"author_nick_name\": \"johndoe\",\n    \"author_email\": \"john@example.com\",\n    \"author_phone\": \"+998901234567\",\n    \"author_password\": \"password123\",\n    \"author_info\": \"Senior developer\",\n    \"author_position\": \"Backend Developer\",\n    \"is_expert\": true\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/author",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Login",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save tokens from response",
+									"var jsonData = pm.response.json();",
+									"if (jsonData.tokens) {",
+									"    pm.collectionVariables.set(\"accessToken\", jsonData.tokens.accessToken);",
+									"    pm.collectionVariables.set(\"refreshToken\", jsonData.tokens.refreshToken);",
+									"    pm.collectionVariables.set(\"authorId\", jsonData.author.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author_email\": \"john@example.com\",\n    \"author_password\": \"password123\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/login",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Refresh Token",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/refresh",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"refresh"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Logout",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"refreshToken\": \"{{refreshToken}}\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/auth/logout",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"auth",
+								"logout"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Authors",
+			"item": [
+				{
+					"name": "Get All Authors",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author by ID",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author/{{authorId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author",
+								"{{authorId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author_first_name\": \"John Updated\",\n    \"author_last_name\": \"Doe Updated\",\n    \"author_info\": \"Updated bio information\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/author/{{authorId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author",
+								"{{authorId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author/{{authorId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author",
+								"{{authorId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Socials",
+			"item": [
+				{
+					"name": "Get All Socials",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/social",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Social by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save social ID from response if needed",
+									"var jsonData = pm.response.json();",
+									"if (jsonData.data && jsonData.data.id) {",
+									"    pm.collectionVariables.set(\"socialId\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/social/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Social",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"social_name\": \"Twitter\",\n    \"social_icon_file\": \"twitter-icon.png\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/social",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Social",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"social_name\": \"Twitter Updated\",\n    \"social_icon_file\": \"twitter-updated-icon.png\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/social/{{socialId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social",
+								"{{socialId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Social",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/social/{{socialId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"social",
+								"{{socialId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Author Socials",
+			"item": [
+				{
+					"name": "Get All Author Socials",
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author-social",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author-social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Get Author Social by ID",
+					"event": [
+						{
+							"listen": "test",
+							"script": {
+								"exec": [
+									"// Save author social ID from response if needed",
+									"var jsonData = pm.response.json();",
+									"if (jsonData.data && jsonData.data.id) {",
+									"    pm.collectionVariables.set(\"authorSocialId\", jsonData.data.id);",
+									"}"
+								],
+								"type": "text/javascript"
+							}
+						}
+					],
+					"request": {
+						"method": "GET",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author-social/1",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author-social",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Create Author Social",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"author_id\": \"{{authorId}}\",\n    \"social_id\": \"{{socialId}}\",\n    \"social_link\": \"https://twitter.com/johndoe\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/author-social",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author-social"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Update Author Social",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							},
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"social_link\": \"https://twitter.com/johndoe_updated\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/author-social/{{authorSocialId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author-social",
+								"{{authorSocialId}}"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete Author Social",
+					"request": {
+						"method": "DELETE",
+						"header": [
+							{
+								"key": "Authorization",
+								"value": "Bearer {{accessToken}}"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/author-social/{{authorSocialId}}",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"author-social",
+								"{{authorSocialId}}"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrl",
+			"value": "http://localhost:3000/api",
+			"type": "string"
+		},
+		{
+			"key": "accessToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "refreshToken",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "authorId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "socialId",
+			"value": "",
+			"type": "string"
+		},
+		{
+			"key": "authorSocialId",
+			"value": "",
+			"type": "string"
+		}
+	]
+}
