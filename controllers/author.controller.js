@@ -1,6 +1,6 @@
 const bcrypt = require("bcrypt")
 
-const Author = require("../models/author.model")
+const { Author } = require("../models")
 
 const sendError = require("../middlewares/errors/error.handling")
 
@@ -79,7 +79,7 @@ const deleteAuthor = async (req, res) => {
             return res.status(404).send({ message: "author not foudn" })
         }
 
-        res.send({message: "author deleted successfully", deleted: author, data })
+        res.send({ message: "author deleted successfully", deleted: author, data })
 
     } catch (err) {
         sendError(err, res)

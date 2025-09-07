@@ -1,4 +1,4 @@
-const Social = require("../models/social.model")
+const { Social } = require("../models")
 const sendError = require("../middlewares/errors/error.handling")
 
 const getAllSocials = async (req, res) => {

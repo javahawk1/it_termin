@@ -27,7 +27,4 @@ const Author_Social = sequelize.define("Author_Social", {
     timestamps: false
 })
 
-Author_Social.belongsTo(Author, { foreignKey: "author_id" })
-Author_Social.belongsTo(Social, { foreignKey: "social_id" })
-
 module.exports = Author_Social

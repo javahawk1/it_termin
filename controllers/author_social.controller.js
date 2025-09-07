@@ -1,12 +1,6 @@
-const Author_Social = require("../models/author_social.model")
+const { Author, Social, Author_Social } = require("../models")
+
 const sendError = require("../middlewares/errors/error.handling")
-
-const Author = require("../models/author.model")
-const Social = require("../models/social.model")
-
-Author_Social.belongsTo(Author, { foreignKey: "author_id" })
-Author_Social.belongsTo(Social, { foreignKey: "social_id" })
-
 
 const getAllAuthorSocials = async (req, res) => {
     try {

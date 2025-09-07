@@ -2,7 +2,7 @@ const bcrypt = require("bcrypt")
 const jwt = require("jsonwebtoken")
 const config = require("config")
 
-const Author = require("../models/author.model")
+const { Author } = require("../models")
 const sendError = require("../middlewares/errors/error.handling")
 
 const generateTokens = (payload) => {
@@ -14,7 +14,7 @@ const generateTokens = (payload) => {
 const login = async (req, res) => {
     try {
         const { author_email, author_password } = req.body
-        
+
         if (!author_email || !author_password) {
             return res.status(400).send({ message: "Email and password are required" })
         }
@@ -35,7 +35,6 @@ const login = async (req, res) => {
             is_expert: author.is_expert
         })
 
-        // Refresh tokenni bazaga saqlash
         await Author.update(
             { refresh_token: tokens.refreshToken },
             { where: { id: author.id } }
@@ -60,7 +59,7 @@ const login = async (req, res) => {
 const logout = async (req, res) => {
     try {
         const { refreshToken } = req.body
-        
+
         if (!refreshToken) {
             return res.status(400).send({ message: "Refresh token is required" })
         }
@@ -82,7 +81,7 @@ const logout = async (req, res) => {
 const refreshToken = async (req, res) => {
     try {
         const { refreshToken } = req.body
-        
+
         if (!refreshToken) {
             return res.status(400).send({ message: "Refresh token is required" })
         }
@@ -94,7 +93,7 @@ const refreshToken = async (req, res) => {
 
         try {
             const decoded = jwt.verify(refreshToken, config.get("secret_key"))
-            
+
             const newTokens = generateTokens({
                 id: decoded.id,
                 email: decoded.email,
