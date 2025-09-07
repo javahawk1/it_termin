@@ -1,8 +1,9 @@
 {
-    "port": "3000",
-    "db_host": "localhost",
-    "db_username": "postgres",
-    "db_password": "1234",
-    "db_port": 5432,
-    "db_name": "express_cargo"
+    "username": "postgres",
+    "password": "1234",
+    "database": "it_info",
+    "host": "localhost",
+    "dialect": "postgres",
+    "port": 3000,
+    "secret_key": "MyVeryHardSecretKey"
 }

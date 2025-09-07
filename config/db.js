@@ -1,14 +1,15 @@
 const { Sequelize } = require("sequelize")
 const config = require("config")
 
-module.exports = new Sequelize(
-    config.get("db_name"),
-    config.get("db_username"),
-    config.get("db_password"),
+const sequelize = new Sequelize(
+    config.get("database"),
+    config.get("username"),
+    config.get("password"),
     {
-        dialect: "postgres",
-        logging: false,
-        host: config.get("db_host"),
-        port: config.get("db_port")
+        host: config.get("host"),
+        dialect: config.get("dialect"),
+        logging: false
     }
 )
+
+module.exports = sequelize

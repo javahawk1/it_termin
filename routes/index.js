@@ -1,12 +1,13 @@
-const express = require("express")
-const router = express.Router()
+const router = require("express").Router()
 
-const authorRoutes = require("./author.route")
-const socialRoutes = require("./social.route")
-const authorSocialRoutes = require("./authorSocial.route")
+const authorRouter = require("./author.route")
+const socialRouter = require("./social.route")
+const authorSocialRouter = require("./author_social.route")
+const authRouter = require("./auth.route") 
 
-router.use("/authors", authorRoutes)
-router.use("/socials", socialRoutes)
-router.use("/author-socials", authorSocialRoutes)
+router.use("/auth", authRouter) 
+router.use("/author", authorRouter)
+router.use("/social", socialRouter)
+router.use("/author-social", authorSocialRouter)
 
 module.exports = router

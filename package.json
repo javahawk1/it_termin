@@ -1,22 +1,24 @@
 {
-  "name": "dars_11",
+  "name": "it_info",
   "version": "1.0.0",
   "description": "",
-  "license": "ISC",
-  "author": "",
-  "type": "commonjs",
   "main": "app.js",
   "scripts": {
-    "dev": "node --watch app"
+    "dev": "node --watch app.js",
+    "start": "node app.js"
   },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
   "dependencies": {
     "bcrypt": "^6.0.0",
     "config": "^4.1.1",
-    "cookie-parser": "^1.4.7",
-    "cors": "^2.8.5",
-    "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "pg": "^8.16.3",
-    "sequelize": "^6.37.7"
+    "express": "^4.18.2",
+    "cors": "^2.8.5",
+    "sequelize": "^6.37.3",
+    "pg": "^8.13.0",
+    "pg-hstore": "^2.3.4"
   }
 }

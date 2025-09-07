@@ -1,30 +1,33 @@
-const sequelize = require("../config/db")
 const { DataTypes } = require("sequelize")
+const sequelize = require("../config/db")
 
-const AuthorSocial = sequelize.define("AuthorSocial", {
+const Author = require("./author.model")
+const Social = require("./social.model")
+
+const Author_Social = sequelize.define("Author_Social", {
     id: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true
     },
     author_id: {
-        type: DataTypes.INTEGER,  
-        allowNull: false,
+        type: DataTypes.INTEGER,
+        allowNull: false
     },
     social_id: {
         type: DataTypes.INTEGER,
-        allowNull: false,
+        allowNull: false
     },
     social_link: {
         type: DataTypes.STRING,
-        allowNull: false,
-        validate: {
-            isUrl: true
-        }
-    },
+        allowNull: true
+    }
 }, {
     tableName: "author_social",
-    timestamps: true
+    timestamps: false
 })
 
-module.exports = AuthorSocial
+Author_Social.belongsTo(Author, { foreignKey: "author_id" })
+Author_Social.belongsTo(Social, { foreignKey: "social_id" })
+
+module.exports = Author_Social

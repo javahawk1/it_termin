@@ -25,7 +25,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/socials",
+							"raw": "http://localhost:3000/api/social",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -33,7 +33,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"socials"
+								"social"
 							]
 						}
 					},
@@ -45,7 +45,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/socials",
+							"raw": "http://localhost:3000/api/social",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -53,19 +53,19 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"socials"
+								"social"
 							]
 						}
 					},
 					"response": []
 				},
 				{
-					"name": "getSpcialById",
+					"name": "getSocialById",
 					"request": {
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/socials/1",
+							"raw": "http://localhost:3000/api/social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -73,7 +73,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"socials",
+								"social",
 								"1"
 							]
 						}
@@ -86,7 +86,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/socials/1",
+							"raw": "http://localhost:3000/api/social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -94,7 +94,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"socials",
+								"social",
 								"1"
 							]
 						}
@@ -116,7 +116,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/socials/2",
+							"raw": "http://localhost:3000/api/social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -124,8 +124,8 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"socials",
-								"2"
+								"social",
+								"1"
 							]
 						}
 					},
@@ -143,7 +143,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"author_first_name\": \"John\",\r\n    \"author_last_name\": \"Doe\",\r\n    \"author_nick_name\": \"johndoe\",\r\n    \"author_email\": \"john@example.com\",\r\n    \"author_phone\": \"+1234567890\",\r\n    \"author_password\": \"password123\",\r\n    \"author_info\": \"Senior developer\",\r\n    \"author_position\": \"Backend Developer\",\r\n    \"author_photo\": \"john.jpg\"\r\n}",
+							"raw": "{\r\n    \"author_first_name\": \"John\",\r\n    \"author_last_name\": \"Doe\",\r\n    \"author_nick_name\": \"jo22h22ndoe\",\r\n    \"author_email\": \"john@22.com\",\r\n    \"author_phone\": \"+998820032271\",\r\n    \"author_password\": \"password123\",\r\n    \"author_info\": \"Senior developer\",\r\n    \"author_position\": \"Backend Developer\",\r\n    \"author_photo\": \"john.jpg\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -151,7 +151,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/authors",
+							"raw": "http://localhost:3000/api/author",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -159,7 +159,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"authors"
+								"author"
 							]
 						}
 					},
@@ -188,10 +188,20 @@
 				{
 					"name": "getAuthorById",
 					"request": {
+						"auth": {
+							"type": "bearer",
+							"bearer": [
+								{
+									"key": "token",
+									"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huQDIyLmNvbSIsImlzX2V4cGVydCI6ZmFsc2UsImlhdCI6MTc1NzI1MTcxMywiZXhwIjoxNzU3MjUyNjEzfQ.fy3pPcmWauKchpl6UIyVFtAf18WdscGuZhF065Nojpw",
+									"type": "string"
+								}
+							]
+						},
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/authors/1",
+							"raw": "http://localhost:3000/api/author/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -199,7 +209,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"authors",
+								"author",
 								"1"
 							]
 						}
@@ -213,7 +223,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"author_first_name\": \"abdullajon\"\r\n}",
+							"raw": "{\r\n    \"author_first_name\": \"abdullajon\",\r\n    \"author_email\": \"abdullajon@gmail.com\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -221,7 +231,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/authors/1",
+							"raw": "http://localhost:3000/api/author/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -229,7 +239,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"authors",
+								"author",
 								"1"
 							]
 						}
@@ -242,7 +252,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/authors/1",
+							"raw": "http://localhost:3000/api/author/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -250,7 +260,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"authors",
+								"author",
 								"1"
 							]
 						}
@@ -299,7 +309,7 @@
 						"header": [],
 						"body": {
 							"mode": "raw",
-							"raw": "{\r\n    \"author_id\": 1,\r\n    \"social_id\": 1,\r\n    \"social_link\": \"https://t.me/johndoe\"\r\n}",
+							"raw": "{\r\n    \"author_id\": 7,\r\n    \"social_id\": 2,\r\n    \"social_link\": \"https://t.me/johndoe\"\r\n}",
 							"options": {
 								"raw": {
 									"language": "json"
@@ -307,7 +317,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/author-socials",
+							"raw": "http://localhost:3000/api/author-social",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -315,7 +325,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"author-socials"
+								"author-social"
 							]
 						}
 					},
@@ -327,7 +337,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/author-socials",
+							"raw": "http://localhost:3000/api/author-social",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -335,7 +345,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"author-socials"
+								"author-social"
 							]
 						}
 					},
@@ -347,7 +357,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/author-socials/author/1",
+							"raw": "http://localhost:3000/api/author-social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -355,8 +365,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"author-socials",
-								"author",
+								"author-social",
 								"1"
 							]
 						}
@@ -369,7 +378,7 @@
 						"method": "DELETE",
 						"header": [],
 						"url": {
-							"raw": "http://localhost:3000/api/author-socials/1",
+							"raw": "http://localhost:3000/api/author-social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -377,7 +386,7 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"author-socials",
+								"author-social",
 								"1"
 							]
 						}
@@ -399,7 +408,7 @@
 							}
 						},
 						"url": {
-							"raw": "http://localhost:3000/api/author-socials/2",
+							"raw": "http://localhost:3000/api/author-social/1",
 							"protocol": "http",
 							"host": [
 								"localhost"
@@ -407,8 +416,73 @@
 							"port": "3000",
 							"path": [
 								"api",
-								"author-socials",
-								"2"
+								"author-social",
+								"1"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "auth",
+			"item": [
+				{
+					"name": "login",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"author_email\": \"john@22.com\",\r\n    \"author_password\": \"password123\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/login",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"login"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "refreshToken",
+					"request": {
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\r\n    \"refreshToken\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MSwiZW1haWwiOiJqb2huQDIyLmNvbSIsImlzX2V4cGVydCI6ZmFsc2UsImlhdCI6MTc1NzI1MTcxMywiZXhwIjoxNzU5ODQzNzEzfQ.YfHUm0eX-geoFFyYA8Bbl3kfcN2mQb_A92fopxDMfy0\"\r\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "http://localhost:3000/api/auth/refresh",
+							"protocol": "http",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"api",
+								"auth",
+								"refresh"
 							]
 						}
 					},

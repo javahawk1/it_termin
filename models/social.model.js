@@ -1,5 +1,5 @@
-const sequelize = require("../config/db")
 const { DataTypes } = require("sequelize")
+const sequelize = require("../config/db")
 
 const Social = sequelize.define("Social", {
     id: {
@@ -14,11 +14,11 @@ const Social = sequelize.define("Social", {
     },
     social_icon_file: {
         type: DataTypes.STRING,
-        allowNull: false,
-    },
+        allowNull: true
+    }
 }, {
-    tableName: "socials",
-    timestamps: true
+    tableName: "social",
+    timestamps: false
 })
 
 module.exports = Social
